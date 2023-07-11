@@ -1,5 +1,8 @@
 package com.dev.jasmine.cqrsarchitecture;
 
+import com.dev.jasmine.cqrsarchitecture.command.api.exception.ProductServiceEventsErrorHandler;
+import org.axonframework.config.EventProcessingConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,4 +13,8 @@ public class CqrsArchitectureApplication {
 		SpringApplication.run(CqrsArchitectureApplication.class, args);
 	}
 
+	@Autowired
+	public void configure(EventProcessingConfigurer processingConfigurer){
+		processingConfigurer.registerListenerInvocationErrorHandler("product", configuration -> new ProductServiceEventsErrorHandler());
+	}
 }

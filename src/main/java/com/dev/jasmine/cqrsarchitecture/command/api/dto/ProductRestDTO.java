@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class ProductRestModel {
+public class ProductRestDTO {
     private String name;
     private BigDecimal price;
     private Integer quantity;
